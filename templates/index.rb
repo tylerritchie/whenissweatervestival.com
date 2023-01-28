@@ -39,15 +39,24 @@ class Index < Mustache
     end
 
     def thanksgiving_date(year:)
-      last_thursday(year: year, month: 11)
+      fourth_thursday(year: year, month: 11)
     end
 
-    def last_thursday(year:, month:)
-      last_day = Date.new(year, month, -1)
-      day_of_week = last_day.wday
-
-      last_day - ((day_of_week - 4) % 7)
+    def fourth_thursday(year:, month:)
+      first_thursday(year: year, month: month) + 7*3
     end
+    
+    def first_thursday(year:, month:)
+      first_day = Date.new(year, month, 1)
+
+      # sundays are 0
+      if (difference = 4 - first_day.wday) < 0
+        first_day + 5 + (difference % 2)
+      else
+        first_day + difference
+      end
+    end
+
 end
 
 puts Index.render if $0 == __FILE__

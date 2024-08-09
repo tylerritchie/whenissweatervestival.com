@@ -10,7 +10,7 @@ DEPENDENCIES
   mustache
 
 RUBY VERSION
-   ruby 2.7.0p0
-
+  ruby 3.3.4p94
+ 
 BUNDLED WITH
-   2.1.2
+  2.5.17
